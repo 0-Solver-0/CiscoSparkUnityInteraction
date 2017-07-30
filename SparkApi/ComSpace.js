@@ -21,10 +21,9 @@ var sparkClient = new CiscoSparkClient(accessToken);
 var app = express();
 
 /* 
-this is not neccessery if the script is 
-runing in web server whith an adress web ex: www.example.com.
-The webhock is created in online CiscoSpark developper and we get the id and name to update the public adrees 
-each time we restart the [ngrok http 3000].
+WebHook update is not necessary if this script is hosted in web server with an address web (ex: www.example.com).
+The WebHook is created in online CiscoSpark developer platform and we take the id and name to update the public 
+address each time we restart the local server [ngrok http 3000].
 process.env['webhock_id'] = 'Y2lzY29zcGFyazovL3VzL1dFQkhPT0svNjVkZTQ4NzEtNTg0MS00NTVkLWEzNzYtNjg3ZmQwMTMxNThl';
 process.env['event_name'] = 'messages_created';
 */
@@ -93,8 +92,8 @@ app.post('/', function (req, res) {
         if (!err) {
 
             /*
-            normalised the messageFormated to be consumed from ClientCsharp 
-            message value#Actor value, ... #position value, ...#intent value.
+            Normalized the messageFormated to be consumed from ClientCsharp   
+            messageFormated : value#Actor value, ... #position value, ...#intent value.
             */
             var messageFormated = "";
             // check only message that comme from the BOT
@@ -149,7 +148,7 @@ app.post('/', function (req, res) {
                 console.log(messageJson);
                 console.log('#######################');
                 console.log(messageFormated);
-                //send normalised data to ClientCsharp
+                //send normalized data to ClientCsharp
                 SendResponse(messageFormated);
             }
         }
